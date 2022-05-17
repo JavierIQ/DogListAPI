@@ -25,8 +25,8 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.searchVDogs.setOnQueryTextListener(this)
         initRecyclerView()
+        binding.searchVDogs.setOnQueryTextListener(this)
     }
 
     private fun initRecyclerView() {
@@ -35,9 +35,9 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
         binding.recyclerVDogs.adapter = adapter
     }
 
-    private fun getRetrofit(): Retrofit{
+    private fun getRetrofit():Retrofit{
         return Retrofit.Builder()
-            .baseUrl("https://dog.ceo/api/breeds/")
+            .baseUrl("https://dog.ceo/api/breed/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
             runOnUiThread {
                 if(call.isSuccessful){
                     //Show recyclerView
-                    val images  = puppies?.images ?: emptyList()
+                    val images = puppies?.images ?: emptyList()
                     dogImages.clear()
                     dogImages.addAll(images)
                     adapter.notifyDataSetChanged()

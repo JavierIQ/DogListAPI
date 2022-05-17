@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-class DogAdapter(val images: List<String>): RecyclerView.Adapter<DogViewHolder>() {
+class DogAdapter(private val images: List<String>): RecyclerView.Adapter<DogViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DogViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -14,7 +14,7 @@ class DogAdapter(val images: List<String>): RecyclerView.Adapter<DogViewHolder>(
     override fun getItemCount(): Int = images.size
 
     override fun onBindViewHolder(holder: DogViewHolder, position: Int) {
-        val item: String = images[position]
+        val item = images[position]
         holder.bind(item)
     }
 
